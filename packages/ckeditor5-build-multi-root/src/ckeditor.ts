@@ -6,84 +6,160 @@
 // The editor creator to use.
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
-import { Essentials } from '@ckeditor/ckeditor5-essentials';
-import { CKFinderUploadAdapter } from '@ckeditor/ckeditor5-adapter-ckfinder';
+import { Alignment } from '@ckeditor/ckeditor5-alignment';
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
-import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import { Bold, Italic, Strikethrough, Underline } from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CKBox } from '@ckeditor/ckeditor5-ckbox';
-import { CKFinder } from '@ckeditor/ckeditor5-ckfinder';
-import { EasyImage } from '@ckeditor/ckeditor5-easy-image';
+import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
+import { Comments } from '@ckeditor/ckeditor5-comments';
+import type { EditorConfig } from '@ckeditor/ckeditor5-core';
+// import { DocumentOutline, TableOfContents } from '@ckeditor/ckeditor5-document-outline';
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
-import { Image, ImageCaption, ImageStyle, ImageToolbar, ImageUpload, PictureEditing } from '@ckeditor/ckeditor5-image';
-import { Indent } from '@ckeditor/ckeditor5-indent';
+import { Highlight } from '@ckeditor/ckeditor5-highlight';
+import {
+	Image,
+	ImageCaption,
+	ImageResize,
+	ImageStyle,
+	ImageToolbar,
+	ImageUpload,
+	PictureEditing
+} from '@ckeditor/ckeditor5-image';
+import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
-import { List } from '@ckeditor/ckeditor5-list';
+import { List, ListProperties, TodoList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
-import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
+import {
+	RealTimeCollaborativeComments,
+	RealTimeCollaborativeEditing
+} from '@ckeditor/ckeditor5-real-time-collaboration';
+import {
+	Table,
+	TableCellProperties,
+	TableProperties,
+	TableToolbar
+} from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
+import { Undo } from '@ckeditor/ckeditor5-undo';
+import { Locale } from '@ckeditor/ckeditor5-utils';
+import { ListView, SearchTextView } from '@ckeditor/ckeditor5-ui';
 
-export default class MultiRootEditor extends MultiRootEditorBase {
+// You can read more about extending the build with additional plugins in the "Installing plugins" guide.
+// See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
+
+class Editor extends MultiRootEditorBase {
 	public static override builtinPlugins = [
-		Essentials,
-		CKFinderUploadAdapter,
+		Alignment,
 		Autoformat,
-		Bold,
-		Italic,
 		BlockQuote,
+		Bold,
 		CKBox,
-		CKFinder,
 		CloudServices,
-		EasyImage,
+		Comments,
+		// DocumentOutline,
+		Essentials,
+		FontBackgroundColor,
+		FontColor,
+		FontFamily,
+		FontSize,
 		Heading,
+		Highlight,
 		Image,
 		ImageCaption,
+		ImageResize,
 		ImageStyle,
 		ImageToolbar,
 		ImageUpload,
 		Indent,
+		IndentBlock,
+		Italic,
 		Link,
 		List,
+		ListProperties,
 		MediaEmbed,
 		Paragraph,
 		PasteFromOffice,
 		PictureEditing,
+		RealTimeCollaborativeComments,
+		RealTimeCollaborativeEditing,
+		Strikethrough,
 		Table,
+		TableCellProperties,
+		// TableOfContents,
+		TableProperties,
 		TableToolbar,
-		TextTransformation
+		TextTransformation,
+		TodoList,
+		Underline,
+		Undo
 	];
 
-	public static override defaultConfig = {
+	public static override defaultConfig: EditorConfig = {
 		toolbar: {
 			items: [
-				'undo', 'redo',
-				'|', 'heading',
-				'|', 'bold', 'italic',
-				'|', 'link', 'uploadImage', 'insertTable', 'blockQuote', 'mediaEmbed',
-				'|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+				'heading',
+				'|',
+				'fontSize',
+				'|',
+				'bold',
+				'italic',
+				'underline',
+				'fontColor',
+				'highlight',
+				'|',
+				'alignment',
+				'bulletedList',
+				'numberedList',
+				'indent',
+				'outdent',
+				'|',
+				'link',
+				'comment',
+				'insertTable',
+				'|'
 			]
 		},
+		language: 'en',
 		image: {
 			toolbar: [
+				'imageTextAlternative',
+				'toggleImageCaption',
 				'imageStyle:inline',
 				'imageStyle:block',
 				'imageStyle:side',
-				'|',
-				'toggleImageCaption',
-				'imageTextAlternative'
+				'comment',
+				'comment'
 			]
 		},
 		table: {
 			contentToolbar: [
 				'tableColumn',
 				'tableRow',
-				'mergeTableCells'
+				'mergeTableCells',
+				'tableCellProperties',
+				'tableProperties'
+			],
+			tableToolbar: [
+				'comment',
+				'comment'
 			]
 		},
-		// This value must be kept in sync with the language defined in webpack.config.js.
-		language: 'en'
+		comments: {
+			editorConfig: {
+				extraPlugins: [
+					Autoformat,
+					Bold,
+					Italic,
+					List
+				]
+			}
+		}
 	};
 }
+
+export default Editor;
