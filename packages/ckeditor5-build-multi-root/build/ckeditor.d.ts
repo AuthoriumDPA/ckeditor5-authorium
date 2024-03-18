@@ -12,6 +12,7 @@ import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { Comments } from '@ckeditor/ckeditor5-comments';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
@@ -27,7 +28,7 @@ import { Table, TableCellProperties, TableProperties, TableToolbar } from '@cked
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 declare class Editor extends MultiRootEditorBase {
-    static builtinPlugins: (typeof Alignment | typeof Paragraph | typeof Heading | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof Strikethrough | typeof Underline | typeof BlockQuote | typeof Undo | typeof Image | typeof ImageCaption | typeof ImageResize | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof CloudServices | typeof CKBox | typeof Essentials | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof Highlight | typeof List | typeof ListProperties | typeof TodoList | typeof Indent | typeof IndentBlock | typeof Link | typeof MediaEmbed | typeof PasteFromOffice | typeof Table | typeof TableCellProperties | typeof TableProperties | typeof TableToolbar | typeof PictureEditing | typeof Comments | typeof PresenceList | typeof RealTimeCollaborativeComments | typeof RealTimeCollaborativeEditing)[];
+    static builtinPlugins: (typeof Alignment | typeof Paragraph | typeof Heading | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof Strikethrough | typeof Underline | typeof BlockQuote | typeof Undo | typeof Image | typeof ImageCaption | typeof ImageResize | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof CloudServices | typeof CKBox | typeof Essentials | typeof FindAndReplace | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof Highlight | typeof List | typeof ListProperties | typeof TodoList | typeof Indent | typeof IndentBlock | typeof Link | typeof MediaEmbed | typeof PasteFromOffice | typeof Table | typeof TableCellProperties | typeof TableProperties | typeof TableToolbar | typeof PictureEditing | typeof Comments | typeof PresenceList | typeof RealTimeCollaborativeComments | typeof RealTimeCollaborativeEditing)[];
     static defaultConfig: EditorConfig;
 }
 export default Editor;

@@ -38,6 +38,7 @@
     "@ckeditor/ckeditor5-easy-image": "41.2.0",
     "@ckeditor/ckeditor5-editor-multi-root": "41.2.0",
     "@ckeditor/ckeditor5-essentials": "41.2.0",
+    "@ckeditor/ckeditor5-find-and-replace": "^41.2.0",
     "@ckeditor/ckeditor5-heading": "41.2.0",
     "@ckeditor/ckeditor5-image": "41.2.0",
     "@ckeditor/ckeditor5-indent": "41.2.0",

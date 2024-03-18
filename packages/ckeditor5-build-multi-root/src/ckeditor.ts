@@ -16,6 +16,7 @@ import { Comments } from '@ckeditor/ckeditor5-comments';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
 // import { DocumentOutline, TableOfContents } from '@ckeditor/ckeditor5-document-outline';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
@@ -62,6 +63,7 @@ class Editor extends MultiRootEditorBase {
 		Comments,
 		// DocumentOutline,
 		Essentials,
+		FindAndReplace,
 		FontBackgroundColor,
 		FontColor,
 		FontFamily,
@@ -121,7 +123,8 @@ class Editor extends MultiRootEditorBase {
 				'link',
 				'comment',
 				'insertTable',
-				'|'
+				'|',
+				'findAndReplace'
 			]
 		},
 		language: 'en',
