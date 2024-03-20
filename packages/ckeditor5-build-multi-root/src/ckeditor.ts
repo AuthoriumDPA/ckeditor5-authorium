@@ -12,7 +12,7 @@ import { Bold, Italic, Strikethrough, Underline } from '@ckeditor/ckeditor5-basi
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CKBox } from '@ckeditor/ckeditor5-ckbox';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
-import { Comments } from '@ckeditor/ckeditor5-comments';
+import { AnnotationsUIs, Comments, WideSidebar } from '@ckeditor/ckeditor5-comments';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
 // import { DocumentOutline, TableOfContents } from '@ckeditor/ckeditor5-document-outline';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
@@ -55,6 +55,7 @@ import { Undo } from '@ckeditor/ckeditor5-undo';
 class Editor extends MultiRootEditorBase {
 	public static override builtinPlugins = [
 		Alignment,
+		AnnotationsUIs,
 		Autoformat,
 		BlockQuote,
 		Bold,
@@ -98,7 +99,8 @@ class Editor extends MultiRootEditorBase {
 		TextTransformation,
 		TodoList,
 		Underline,
-		Undo
+		Undo,
+		WideSidebar
 	];
 
 	public static override defaultConfig: EditorConfig = {
