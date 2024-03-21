@@ -3,7 +3,6 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-// The editor creator to use.
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
@@ -14,7 +13,6 @@ import { CKBox } from '@ckeditor/ckeditor5-ckbox';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { AnnotationsUIs, Comments, WideSidebar } from '@ckeditor/ckeditor5-comments';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
-// import { DocumentOutline, TableOfContents } from '@ckeditor/ckeditor5-document-outline';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
@@ -49,9 +47,6 @@ import {
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 
-// You can read more about extending the build with additional plugins in the "Installing plugins" guide.
-// See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
-
 class Editor extends MultiRootEditorBase {
 	public static override builtinPlugins = [
 		Alignment,
@@ -62,7 +57,6 @@ class Editor extends MultiRootEditorBase {
 		CKBox,
 		CloudServices,
 		Comments,
-		// DocumentOutline,
 		Essentials,
 		FindAndReplace,
 		FontBackgroundColor,
@@ -93,7 +87,6 @@ class Editor extends MultiRootEditorBase {
 		Strikethrough,
 		Table,
 		TableCellProperties,
-		// TableOfContents,
 		TableProperties,
 		TableToolbar,
 		TextTransformation,
