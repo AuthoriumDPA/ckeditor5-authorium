@@ -45,6 +45,7 @@ import {
 	TableToolbar
 } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
+import { TrackChanges } from '@ckeditor/ckeditor5-track-changes';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 
 class Editor extends MultiRootEditorBase {
@@ -91,6 +92,7 @@ class Editor extends MultiRootEditorBase {
 		TableToolbar,
 		TextTransformation,
 		TodoList,
+		TrackChanges,
 		Underline,
 		Undo,
 		WideSidebar
@@ -119,7 +121,8 @@ class Editor extends MultiRootEditorBase {
 				'comment',
 				'insertTable',
 				'|',
-				'findAndReplace'
+				'findAndReplace',
+				'trackChanges'
 			]
 		},
 		language: 'en',

@@ -48,6 +48,7 @@
     "@ckeditor/ckeditor5-paragraph": "41.2.0",
     "@ckeditor/ckeditor5-paste-from-office": "41.2.0",
     "@ckeditor/ckeditor5-table": "41.2.0",
+    "@ckeditor/ckeditor5-track-changes": "41.2.0",
     "@ckeditor/ckeditor5-typing": "41.2.0"
   },
   "devDependencies": {
