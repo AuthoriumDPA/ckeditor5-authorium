@@ -6,18 +6,19 @@
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
-import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
-import { Bold, Italic, Strikethrough, Underline } from '@ckeditor/ckeditor5-basic-styles';
-import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
-import { CKBox } from '@ckeditor/ckeditor5-ckbox';
-import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { AnnotationsUIs, Comments, WideSidebar } from '@ckeditor/ckeditor5-comments';
+import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
+import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+import { Bold, Italic, Strikethrough, Underline, Subscript, Superscript } from '@ckeditor/ckeditor5-basic-styles';
+import { CKFinderUploadAdapter } from '@ckeditor/ckeditor5-adapter-ckfinder';
+import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
+import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
 import {
 	Image,
 	ImageCaption,
@@ -25,12 +26,15 @@ import {
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageTextAlternative,
 	PictureEditing
 } from '@ckeditor/ckeditor5-image';
 import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
 import { List, ListProperties, TodoList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
+import { Mention } from '@ckeditor/ckeditor5-mention';
+import { PageBreak } from '@ckeditor/ckeditor5-page-break';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import {
@@ -38,15 +42,33 @@ import {
 	RealTimeCollaborativeComments,
 	RealTimeCollaborativeEditing
 } from '@ckeditor/ckeditor5-real-time-collaboration';
+import { RemoveFormat } from '@ckeditor/ckeditor5-remove-format';
 import {
 	Table,
+	TableCaption,
 	TableCellProperties,
+	TableColumnResize,
 	TableProperties,
-	TableToolbar
+	TableToolbar,
 } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { TrackChanges } from '@ckeditor/ckeditor5-track-changes';
-import { Undo } from '@ckeditor/ckeditor5-undo';
+import { Undo } from '@ckeditor/ckeditor5-undo';``
+import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
+
+import {
+	CodeBlockConfiguration,
+	HeadingConfiguration,
+	ImageConfiguration,
+	LanguageConfig,
+	MentionCustomization,
+	NumericFontSizeConfig,
+	TableConfiguration
+} from './helpers';
+
+interface MultirootEditorConfig extends EditorConfig {
+	codeBlock: { languages: LanguageConfig[] },
+}
 
 class Editor extends MultiRootEditorBase {
 	public static override builtinPlugins = [
@@ -55,7 +77,6 @@ class Editor extends MultiRootEditorBase {
 		Autoformat,
 		BlockQuote,
 		Bold,
-		CKBox,
 		CloudServices,
 		Comments,
 		Essentials,
@@ -66,12 +87,14 @@ class Editor extends MultiRootEditorBase {
 		FontSize,
 		Heading,
 		Highlight,
+		HorizontalLine,
 		Image,
 		ImageCaption,
 		ImageResize,
 		ImageStyle,
 		ImageToolbar,
 		ImageUpload,
+		ImageTextAlternative,
 		Indent,
 		IndentBlock,
 		Italic,
@@ -79,32 +102,46 @@ class Editor extends MultiRootEditorBase {
 		List,
 		ListProperties,
 		MediaEmbed,
+		Mention,
+		MentionCustomization,
+		PageBreak,
 		Paragraph,
 		PasteFromOffice,
 		PictureEditing,
 		PresenceList,
 		RealTimeCollaborativeComments,
 		RealTimeCollaborativeEditing,
+		RemoveFormat,
 		Strikethrough,
+		Subscript,
+		Superscript,
 		Table,
+		TableCaption,
 		TableCellProperties,
+		TableColumnResize,
 		TableProperties,
 		TableToolbar,
 		TextTransformation,
 		TodoList,
 		TrackChanges,
 		Underline,
+		CKFinderUploadAdapter,
 		Undo,
-		WideSidebar
+		WideSidebar,
+		WProofreader
 	];
 
-	public static override defaultConfig: EditorConfig = {
-		toolbar: {
+	private static toolbarItems = [
+		'undo',
+		'redo',
+		'|',
+		'heading',
+		'|',
+		'fontSize',
+		{
+			label: 'Text Styles',
+			icon: 'bold',
 			items: [
-				'heading',
-				'|',
-				'fontSize',
-				'|',
 				'bold',
 				'italic',
 				'underline',
@@ -122,34 +159,56 @@ class Editor extends MultiRootEditorBase {
 				'insertTable',
 				'|',
 				'findAndReplace',
+				'strikethrough',
+				'subscript',
+				'superscript',
 				'trackChanges'
 			]
 		},
+		'fontColor',
+		'italic',
+		'underline',
+		'fontBackgroundColor',
+		'|',
+		'alignment',
+		'bulletedList',
+		'numberedList',
+		'outdent',
+		'indent',
+		'pageBreak',
+		'|',
+		'link',
+		'imageUpload',
+		'insertTable',
+		'|',
+		'findAndReplace',
+		'removeFormat',
+		'wproofreader',
+		'blockQuote',
+		'horizontalLine'
+	]
+
+	public static override defaultConfig: MultirootEditorConfig = {
+		toolbar: {
+			items: Editor.toolbarItems
+		},
+		fontSize: NumericFontSizeConfig,
 		language: 'en',
-		image: {
-			toolbar: [
-				'imageTextAlternative',
-				'toggleImageCaption',
-				'imageStyle:inline',
-				'imageStyle:block',
-				'imageStyle:side',
-				'comment',
-				'comment'
-			]
+		codeBlock: CodeBlockConfiguration,
+		list: {
+			properties: {
+				startIndex: true
+			}
 		},
-		table: {
-			contentToolbar: [
-				'tableColumn',
-				'tableRow',
-				'mergeTableCells',
-				'tableCellProperties',
-				'tableProperties'
-			],
-			tableToolbar: [
-				'comment',
-				'comment'
-			]
+		link: {
+			defaultProtocol: 'https://'
 		},
+		image: ImageConfiguration,
+		indentBlock: {
+			offset: 1,
+			unit: 'em'
+		},
+		table: TableConfiguration,
 		comments: {
 			editorConfig: {
 				extraPlugins: [
@@ -159,7 +218,8 @@ class Editor extends MultiRootEditorBase {
 					List
 				]
 			}
-		}
+		},
+		heading: HeadingConfiguration,
 	};
 }
 
