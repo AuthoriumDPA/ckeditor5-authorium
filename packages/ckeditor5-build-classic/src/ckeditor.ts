@@ -13,6 +13,8 @@ import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CKBox } from '@ckeditor/ckeditor5-ckbox';
 import { CKFinder } from '@ckeditor/ckeditor5-ckfinder';
+import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
+import { AnnotationsUIs, Comments, WideSidebar } from '@ckeditor/ckeditor5-comments';
 import { EasyImage } from '@ckeditor/ckeditor5-easy-image';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Image, ImageCaption, ImageStyle, ImageToolbar, ImageUpload, PictureEditing } from '@ckeditor/ckeditor5-image';
@@ -22,14 +24,21 @@ import { List } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
+import {
+	PresenceList,
+	RealTimeCollaborativeComments,
+	RealTimeCollaborativeEditing,
+	RealTimeCollaborativeTrackChanges
+} from '@ckeditor/ckeditor5-real-time-collaboration';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
+import { TrackChanges } from '@ckeditor/ckeditor5-track-changes';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 
 export default class ClassicEditor extends ClassicEditorBase {
 	public static override builtinPlugins = [
 		Essentials,
 		CKFinderUploadAdapter,
+		AnnotationsUIs,
 		Autoformat,
 		Bold,
 		Italic,
@@ -37,6 +46,7 @@ export default class ClassicEditor extends ClassicEditorBase {
 		CKBox,
 		CKFinder,
 		CloudServices,
+		Comments,
 		EasyImage,
 		Heading,
 		Image,
@@ -51,9 +61,15 @@ export default class ClassicEditor extends ClassicEditorBase {
 		Paragraph,
 		PasteFromOffice,
 		PictureEditing,
+		PresenceList,
+		RealTimeCollaborativeComments,
+		RealTimeCollaborativeEditing,
+		RealTimeCollaborativeTrackChanges,
 		Table,
 		TableToolbar,
-		TextTransformation
+		TextTransformation,
+		TrackChanges,
+		WideSidebar
 	];
 
 	public static override defaultConfig = {
@@ -63,7 +79,8 @@ export default class ClassicEditor extends ClassicEditorBase {
 				'|', 'heading',
 				'|', 'bold', 'italic',
 				'|', 'link', 'uploadImage', 'insertTable', 'blockQuote', 'mediaEmbed',
-				'|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+				'|', 'bulletedList', 'numberedList', 'outdent', 'indent',
+				'trackChanges', 'comment'
 			]
 		},
 		image: {
