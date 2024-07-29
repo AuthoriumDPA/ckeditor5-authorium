@@ -135,8 +135,7 @@ class Editor extends MultiRootEditorBase {
 		Underline,
 		CKFinderUploadAdapter,
 		Undo,
-		WideSidebar,
-		WProofreader
+		WideSidebar
 	];
 
 	private static toolbarItems = [
@@ -174,7 +173,6 @@ class Editor extends MultiRootEditorBase {
 		'|',
 		'findAndReplace',
 		'removeFormat',
-		'wproofreader',
 		'blockQuote',
 		'horizontalLine',
 		'|',
