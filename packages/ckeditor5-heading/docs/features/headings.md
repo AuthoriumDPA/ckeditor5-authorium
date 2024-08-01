@@ -86,18 +86,16 @@ For example, the following editor will support only two levels of headings &ndas
 ```
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		heading: {
-			options: [
-				{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-				{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-				{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-			]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	heading: {
+		options: [
+			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+			{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+			{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+		]
+	}
+} )
+.then( /* ... */ );
 ```
 
 {@snippet features/custom-heading-levels}
@@ -126,30 +124,28 @@ For example, the following editor will support the following two heading options
 ```
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		heading: {
-			options: [
-				{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-				{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-				{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-				{
-					model: 'headingFancy',
-					view: {
-						name: 'h2',
-						classes: 'fancy'
-					},
-					title: 'Heading 2 (fancy)',
-					class: 'ck-heading_heading2_fancy',
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	heading: {
+		options: [
+			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+			{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+			{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+			{
+				model: 'headingFancy',
+				view: {
+					name: 'h2',
+					classes: 'fancy'
+				},
+				title: 'Heading 2 (fancy)',
+				class: 'ck-heading_heading2_fancy',
 
-					// It needs to be converted before the standard 'heading2'.
-					converterPriority: 'high'
-				}
-			]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+				// It needs to be converted before the standard 'heading2'.
+				converterPriority: 'high'
+			}
+		]
+	}
+} )
+.then( /* ... */ );
 ```
 
 {@snippet features/custom-heading-elements}

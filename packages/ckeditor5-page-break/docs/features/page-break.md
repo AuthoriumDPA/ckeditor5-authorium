@@ -31,13 +31,11 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, PageBreak } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ PageBreak, /* ... */ ],
-		toolbar: [ 'pageBreak', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ PageBreak, /* ... */ ],
+	toolbar: [ 'pageBreak', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 ## Related features

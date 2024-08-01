@@ -169,15 +169,14 @@ Finally, the JavaScript to run the editor (learn how to [install](#installation)
 ```js
 import { DecoupledEditor, Minimap } from 'ckeditor5';
 
-DecoupledEditor
-	.create( document.querySelector( '#editor-content' ), {
-		plugins: [ Minimap, /* ... */ ],
-		minimap: {
-			container: document.querySelector( '.minimap-container' ),
-		}
-	} )
-	.then( editor => {
-		const toolbarContainer = document.querySelector( '#toolbar-container' );
+DecoupledEditor.create( document.querySelector( '#editor-content' ), {
+	plugins: [ Minimap, /* ... */ ],
+	minimap: {
+		container: document.querySelector( '.minimap-container' ),
+	}
+} )
+.then( editor => {
+	const toolbarContainer = document.querySelector( '#toolbar-container' );
 
 		toolbarContainer.appendChild( editor.ui.view.toolbar.element );
 	} );

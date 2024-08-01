@@ -67,17 +67,15 @@ function SpecialCharactersEmoji( editor ) {
 	], { label: 'Emoticons' } );
 }
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [
-			SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersEmoji,
-			// More plugins.
-			// ...
-		],
-		toolbar: [ 'specialCharacters', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [
+		SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersEmoji,
+		// More plugins.
+		// ...
+	],
+	toolbar: [ 'specialCharacters', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 After adding the above plugin to the editor configuration, the new category will become available in the special characters dropdown.
@@ -109,18 +107,16 @@ function SpecialCharactersExtended( editor ) {
 	] );
 }
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [
-			SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersExtended,
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [
+		SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersExtended,
 
-			// More plugins.
-			// ...
-		],
-		toolbar: [ 'specialCharacters', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+		// More plugins.
+		// ...
+	],
+	toolbar: [ 'specialCharacters', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 <info-box>
@@ -149,18 +145,16 @@ For example, you can limit the categories to "Mathematical" and "Currency" only 
 ```js
 import { ClassicEditor, SpecialCharacters, SpecialCharactersCurrency, SpecialCharactersMathematical } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [
-			SpecialCharacters, SpecialCharactersCurrency, SpecialCharactersMathematical,
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [
+		SpecialCharacters, SpecialCharactersCurrency, SpecialCharactersMathematical,
 
-			// More plugins.
-			// ...
-		],
-		toolbar: [ 'specialCharacters', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+		// More plugins.
+		// ...
+	],
+	toolbar: [ 'specialCharacters', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 Below you can see a demo based on the example shown above. After clicking the special characters toolbar button {@icon @ckeditor/ckeditor5-special-characters/theme/icons/specialcharacters.svg Special characters}, you can see that it contains fewer categories compared to the other editors on this page.

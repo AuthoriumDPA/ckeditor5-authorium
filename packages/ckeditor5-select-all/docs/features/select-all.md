@@ -33,16 +33,14 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, SelectAll } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		// Load the plugin.
-		plugins: [ SelectAll, /* ... */ ],
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	// Load the plugin.
+	plugins: [ SelectAll, /* ... */ ],
 
-		// Display the "Select all" button in the toolbar.
-		toolbar: [ 'selectAll', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	// Display the "Select all" button in the toolbar.
+	toolbar: [ 'selectAll', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 <info-box info>

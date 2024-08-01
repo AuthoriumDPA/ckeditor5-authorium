@@ -38,17 +38,15 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, MediaEmbed } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ MediaEmbed, /* ... */ ],
-		toolbar: [ 'mediaEmbed', /* ... */ ]
-		mediaEmbed: {
-			// Configuration
-			// ...
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ MediaEmbed, /* ... */ ],
+	toolbar: [ 'mediaEmbed', /* ... */ ]
+	mediaEmbed: {
+		// Configuration
+		// ...
+	}
+} )
+.then( /* ... */ );
 ```
 
 <info-box>
@@ -175,16 +173,14 @@ To remove certain providers, use {@link module:media-embed/mediaembedconfig~Medi
 For instance, to leave only the previewable providers, configure this feature as follows:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ MediaEmbed, /* ... */ ],
-		toolbar: [ 'mediaEmbed', /* ... */ ]
-		mediaEmbed: {
-			removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ MediaEmbed, /* ... */ ],
+	toolbar: [ 'mediaEmbed', /* ... */ ]
+	mediaEmbed: {
+		removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ]
+	}
+} )
+.then( /* ... */ );
 ```
 
 #### Overriding media providers
@@ -192,26 +188,24 @@ ClassicEditor
 To override the default providers, use {@link module:media-embed/mediaembedconfig~MediaEmbedConfig#providers `config.mediaEmbed.providers`} and define your set according to the {@link module:media-embed/mediaembedconfig~MediaEmbedProvider provider syntax}:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ MediaEmbed, /* ... */ ],,
-		toolbar: [ 'mediaEmbed', /* ... */ ]
-		mediaEmbed: {
-			providers: [
-				{
-					// A URL regular expression or an array of URL regular expressions:
-					url: /^example\.com\/media\/(\w+)/,
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ MediaEmbed, /* ... */ ],,
+	toolbar: [ 'mediaEmbed', /* ... */ ]
+	mediaEmbed: {
+		providers: [
+			{
+				// A URL regular expression or an array of URL regular expressions:
+				url: /^example\.com\/media\/(\w+)/,
 
-					// To be defined only if the media are previewable:
-					html: match => '...'
-				},
-				// More providers.
-				// ...
-			]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+				// To be defined only if the media are previewable:
+				html: match => '...'
+			},
+			// More providers.
+			// ...
+		]
+	}
+} )
+.then( /* ... */ );
 ```
 
 You can take inspiration from the default configuration of this feature. You can find it in [https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-media-embed/src/mediaembedediting.ts](https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-media-embed/src/mediaembedediting.ts)

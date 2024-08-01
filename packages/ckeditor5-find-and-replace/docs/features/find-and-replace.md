@@ -48,14 +48,12 @@ ClassicEditor
 By default, the find and replace form displays inside a dialog. That allows for keeping it open while editing the document at the same time. Alternatively, you can display the feature in a dropdown. To do this, use the {@link module:find-and-replace/findandreplaceconfig~FindAndReplaceConfig `config.findAndReplace.uiType`} configuration option:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		findAndReplace: {
-			uiType: 'dropdown'
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	findAndReplace: {
+		uiType: 'dropdown'
+	}
+} )
+.then( /* ... */ );
 ```
 
 {@snippet features/find-and-replace-dropdown}

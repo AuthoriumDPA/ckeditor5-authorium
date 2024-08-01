@@ -36,13 +36,11 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, Table, TableColumnResize } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ Table, TableColumnResize, /* ... */ ],
-		toolbar: [ 'insertTable', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ Table, TableColumnResize, /* ... */ ],
+	toolbar: [ 'insertTable', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 ## Common API

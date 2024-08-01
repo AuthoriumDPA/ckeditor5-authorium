@@ -145,22 +145,20 @@ By default, the CKBox feature maps the uploaded image type to the category confi
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			defaultUploadCategories: {
-				Bitmaps: [ 'bmp' ],
-				Pictures: [ 'jpg', 'jpeg' ],
-				Scans: [ 'png', 'tiff' ],
-				// The category below is referenced by its ID.
-				'fdf2a647-b67f-4a6c-b692-5ba1dc1ed87b': [ 'gif' ]
-			}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		defaultUploadCategories: {
+			Bitmaps: [ 'bmp' ],
+			Pictures: [ 'jpg', 'jpeg' ],
+			Scans: [ 'png', 'tiff' ],
+			// The category below is referenced by its ID.
+			'fdf2a647-b67f-4a6c-b692-5ba1dc1ed87b': [ 'gif' ]
 		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	}
+} )
+.then( /* ... */ );
 ```
 
 If you define your own upload category mappings for a particular image type, only your first found category will be taken into account while finding the appropriate category for the uploaded image. Category mappings configured on the server will not be searched in that case. The image will not be uploaded (and hence inserted into the editor) in the following cases:
@@ -180,18 +178,16 @@ If the user is assigned to more than one workspace, by default all the files upl
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			tokenUrl: 'https://your.token.url',
-			// Sample workspace referenced by its ID.
-			defaultUploadWorkspaceId: [ 'pHUSQFj_QIvc' ]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		tokenUrl: 'https://your.token.url',
+		// Sample workspace referenced by its ID.
+		defaultUploadWorkspaceId: [ 'pHUSQFj_QIvc' ]
+	}
+} )
+.then( /* ... */ );
 ```
 
 You can obtain the list of available workspaces using the [Workspaces REST API](https://ckeditor.com/docs/ckbox/latest/features/file-management/workspaces.html#managing-workspaces-with-the-rest-api).
@@ -203,16 +199,14 @@ After choosing an asset from the CKBox dialog, it is inserted into the editor co
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			ignoreDataId: true
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		ignoreDataId: true
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Changing the language
@@ -222,16 +216,14 @@ By default, the CKBox dialog takes the current language from the editor. If you 
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			language: 'es'
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		language: 'es'
+	}
+} )
+.then( /* ... */ );
 ```
 
 Also, make sure to include the translation file after loading the CKBox library:
@@ -248,16 +240,14 @@ The CKBox feature requires the token endpoint URL configured in the {@link modul
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			tokenUrl: 'https://example.com/cs-token-endpoint'
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		tokenUrl: 'https://example.com/cs-token-endpoint'
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Configuring the API service
@@ -267,16 +257,14 @@ If you host the cloud service in your environment, you should configure the base
 ```js
 import { ClassicEditor, CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			serviceOrigin: 'https://example.com/'
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		serviceOrigin: 'https://example.com/'
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Editing external images
@@ -286,16 +274,14 @@ If you want to allow CKBox to edit external images, not hosted by the file manag
 ```js
 import { CKBox } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ CKBox, /* ... */ ],
-		toolbar: [ 'ckbox', /* ... */ ],
-		ckbox: {
-			allowExternalImagesEditing: [ 'origin', /^cksource.com/ ]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ CKBox, /* ... */ ],
+	toolbar: [ 'ckbox', /* ... */ ],
+	ckbox: {
+		allowExternalImagesEditing: [ 'origin', /^cksource.com/ ]
+	}
+} )
+.then( /* ... */ );
 ```
 
 The image is editable if this option is:

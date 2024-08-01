@@ -32,13 +32,12 @@ The example above was created by using the following HTML page structure:
 You can use the code below to set up the WYSIWYG editor with the word and character count features as in the example above.
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		// Configuration details.
-	} )
-	.then( editor => {
-		const wordCountPlugin = editor.plugins.get( 'WordCount' );
-		const wordCountWrapper = document.getElementById( 'word-count' );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	// Configuration details.
+} )
+.then( editor => {
+	const wordCountPlugin = editor.plugins.get( 'WordCount' );
+	const wordCountWrapper = document.getElementById( 'word-count' );
 
 		wordCountWrapper.appendChild( wordCountPlugin.wordCountContainer );
 	} );
@@ -99,18 +98,16 @@ There are two configuration options available that change the output of the word
 You can execute your custom callback every time content statistics change by defining {@link module:word-count/wordcountconfig~WordCountConfig#onUpdate `config.wordCount.onUpdate`} in the editor configuration:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ WordCount, /* ... */ ],
-		wordCount: {
-			onUpdate: stats => {
-				// Prints the current content statistics.
-				console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
-			}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ WordCount, /* ... */ ],
+	wordCount: {
+		onUpdate: stats => {
+			// Prints the current content statistics.
+			console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
 		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	}
+} )
+.then( /* ... */ );
 ```
 
 **Note**: For performance reasons, your callback will be throttled and may not be up–to–date. Use the {@link module:word-count/wordcount~WordCount#characters} and {@link module:word-count/wordcount~WordCount#words} plugin properties to retrieve the precise numbers on demand.

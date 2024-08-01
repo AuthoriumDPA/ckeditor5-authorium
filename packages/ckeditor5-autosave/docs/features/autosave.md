@@ -49,14 +49,12 @@ ClassicEditor
 		plugins: [
 			Autosave,
 
-			// ... other plugins.
-		],
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [
+		Autosave,
 
-		autosave: {
-			save( editor ) {
-				return saveData( editor.getData() );
-			}
-		},
+		// ... other plugins.
+	],
 
 		// ... other configuration options.
 	} )

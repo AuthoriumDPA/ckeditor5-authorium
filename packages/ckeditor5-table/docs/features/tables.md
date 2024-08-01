@@ -192,16 +192,14 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, Table, TableToolbar } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ Table, TableToolbar, Bold, /* ... */ ],
-		toolbar: [ 'insertTable', /* ... */ ],
-		table: {
-			contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ Table, TableToolbar, Bold, /* ... */ ],
+	toolbar: [ 'insertTable', /* ... */ ],
+	table: {
+		contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Default table headers
@@ -211,16 +209,14 @@ To make every inserted table have `n` number of rows and columns as table header
 ```js
 import { ClassicEditor, Table, TableToolbar } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ Table, TableToolbar, Bold, /* ... */ ],
-		toolbar: [ 'insertTable', /* ... */ ],
-		table: {
-			defaultHeadings: { rows: 1, columns: 1 }
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ Table, TableToolbar, Bold, /* ... */ ],
+	toolbar: [ 'insertTable', /* ... */ ],
+	table: {
+		defaultHeadings: { rows: 1, columns: 1 }
+	}
+} )
+.then( /* ... */ );
 ```
 
 Check the table with default headers applied to both the first row and the first column in the demo below. Click on the table and use the column properties {@icon @ckeditor/ckeditor5-table/theme/icons/table-column.svg Table column} or the row properties {@icon @ckeditor/ckeditor5-table/theme/icons/table-row.svg Table row} UI button to toggle the respective headers.
@@ -244,14 +240,12 @@ function DisallowNestingTables( editor ) {
 
 // Pass it via config.extraPlugins or config.plugins:
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		extraPlugins: [ DisallowNestingTables ],
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	extraPlugins: [ DisallowNestingTables ],
 
-		// The rest of the configuration.
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	// The rest of the configuration.
+} )
+.then( /* ... */ );
 ```
 <info-box>
 	Check the {@link tutorials/crash-course/editor step-by-step tutorial} if you need more information about the technical side of this solution.

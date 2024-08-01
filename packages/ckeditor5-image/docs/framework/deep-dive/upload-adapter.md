@@ -552,12 +552,12 @@ ClassicEditor
 	.create( document.querySelector( '#editor' ), {
 		plugins: [ MyCustomUploadAdapterPlugin, Essentials, Paragraph, Image, ImageUpload, /* ... */ ],
 
-		// More configuration options.
-		// ...
-	} )
-	.catch( error => {
-		console.log( error );
-	} );
+	// More configuration options.
+	// ...
+} )
+.catch( error => {
+	console.log( error );
+} );
 ```
 
 ## What's next

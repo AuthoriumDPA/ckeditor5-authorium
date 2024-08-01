@@ -35,13 +35,11 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, SourceEditing } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ SourceEditing, /* ... */ ],
-		toolbar: [ 'sourceEditing', /* ... */ ]
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ SourceEditing, /* ... */ ],
+	toolbar: [ 'sourceEditing', /* ... */ ]
+} )
+.then( /* ... */ );
 ```
 
 To utilize the Markdown source editing mode just add the {@link features/markdown Markdown output} plugin to the editor.
@@ -49,13 +47,11 @@ To utilize the Markdown source editing mode just add the {@link features/markdow
 ```js
 import { ClassicEditor, SourceEditing, Markdown } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ SourceEditing, Markdown, /* ... */ ],
-		toolbar: [ 'sourceEditing', /* ... */ ]
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ SourceEditing, Markdown, /* ... */ ],
+	toolbar: [ 'sourceEditing', /* ... */ ]
+} )
+.then( /* ... */ );
 ```
 
 ## Limitations and incompatibilities

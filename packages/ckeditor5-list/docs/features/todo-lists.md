@@ -36,13 +36,11 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { TodoList } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ TodoList, /* ... */ ],
-		toolbar: [ 'todoList', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ TodoList, /* ... */ ],
+	toolbar: [ 'todoList', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 ## Related features

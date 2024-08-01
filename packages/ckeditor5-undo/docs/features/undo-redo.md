@@ -41,16 +41,14 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, Undo } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		// Load the plugin.
-		plugins: [ Undo, /* ... */ ],
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	// Load the plugin.
+	plugins: [ Undo, /* ... */ ],
 
-		// Display the "Undo" and "Redo" buttons in the toolbar.
-		toolbar: [ 'undo', 'redo', /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	// Display the "Undo" and "Redo" buttons in the toolbar.
+	toolbar: [ 'undo', 'redo', /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 <info-box info>

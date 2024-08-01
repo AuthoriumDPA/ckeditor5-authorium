@@ -66,12 +66,10 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, GeneralHtmlSupport } from 'ckeditor5';
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ GeneralHtmlSupport, /* ... */ ],
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ GeneralHtmlSupport, /* ... */ ],
+} )
+.then( /* ... */ );
 ```
 
 ## Configuration

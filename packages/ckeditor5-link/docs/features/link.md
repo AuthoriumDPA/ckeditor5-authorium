@@ -74,33 +74,31 @@ In the editor below, all **external** links get the `target="_blank"` and `rel="
 The following code runs this editor. Learn more about the [configuration](#configuration) of the feature.
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		toolbar: {
-			items: [
-				'link',
-				// More toolbar items.
-				// ...
-			],
-		},
-		link: {
-			// Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
-			addTargetToExternalLinks: true,
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	toolbar: {
+		items: [
+			'link',
+			// More toolbar items.
+			// ...
+		],
+	},
+	link: {
+		// Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
+		addTargetToExternalLinks: true,
 
-			// Let the users control the "download" attribute of each link.
-			decorators: [
-				{
-					mode: 'manual',
-					label: 'Downloadable',
-					attributes: {
-						download: 'download'
-					}
+		// Let the users control the "download" attribute of each link.
+		decorators: [
+			{
+				mode: 'manual',
+				label: 'Downloadable',
+				attributes: {
+					download: 'download'
 				}
-			]
-		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+			}
+		]
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Configuration
@@ -133,17 +131,15 @@ ClassicEditor
 Internally, this configuration corresponds to an [automatic decorator](#adding-attributes-to-links-based-on-predefined-rules-automatic-decorators) with the following {@link module:link/linkconfig~LinkDecoratorAutomaticDefinition definition}:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		link: {
-			decorators: {
-				addTargetToExternalLinks: {
-					mode: 'automatic',
-					callback: url => /^(https?:)?\/\//.test( url ),
-					attributes: {
-						target: '_blank',
-						rel: 'noopener noreferrer'
-					}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	link: {
+		decorators: {
+			addTargetToExternalLinks: {
+				mode: 'automatic',
+				callback: url => /^(https?:)?\/\//.test( url ),
+				attributes: {
+					target: '_blank',
+					rel: 'noopener noreferrer'
 				}
 			}
 		}
@@ -157,17 +153,15 @@ ClassicEditor
 If you want to leave the decision whether a link should open in a new tab to the users, do not use the `config.link.addTargetToExternalLinks` configuration. Define a new [manual decorator](#adding-attributes-to-links-using-the-ui-manual-decorators) with the following definition instead:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		link: {
-			decorators: {
-				openInNewTab: {
-					mode: 'manual',
-					label: 'Open in a new tab',
-					attributes: {
-						target: '_blank',
-						rel: 'noopener noreferrer'
-					}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	link: {
+		decorators: {
+			openInNewTab: {
+				mode: 'manual',
+				label: 'Open in a new tab',
+				attributes: {
+					target: '_blank',
+					rel: 'noopener noreferrer'
 				}
 			}
 		}
@@ -236,16 +230,14 @@ Automatic link decorators match all links in the editor content against a {@link
 For instance, to create an automatic decorator that adds the `download="file.pdf"` attribute to all links ending with the `".pdf"` extension, you should add the following {@link module:link/linkconfig~LinkDecoratorAutomaticDefinition definition} to {@link module:link/linkconfig~LinkConfig#decorators `config.link.decorators`}:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		link: {
-			decorators: {
-				detectDownloadable: {
-					mode: 'automatic',
-					callback: url => url.endsWith( '.pdf' ),
-					attributes: {
-						download: 'file.pdf'
-					}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	link: {
+		decorators: {
+			detectDownloadable: {
+				mode: 'automatic',
+				callback: url => url.endsWith( '.pdf' ),
+				attributes: {
+					download: 'file.pdf'
 				}
 			}
 		}
@@ -267,25 +259,23 @@ Manual link decorators are represented in the link editing balloon as switch but
 To configure a "Downloadable" switch button in the link editing balloon that adds the `download="file"` attribute to the link when turned on, add the following definition to {@link module:link/linkconfig~LinkConfig#decorators `config.link.decorators`}:
 
 ```js
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		link: {
-			decorators: {
-				toggleDownloadable: {
-					mode: 'manual',
-					label: 'Downloadable',
-					attributes: {
-						download: 'file'
-					}
-				},
-				openInNewTab: {
-					mode: 'manual',
-					label: 'Open in a new tab',
-					defaultValue: true,			// This option will be selected by default.
-					attributes: {
-						target: '_blank',
-						rel: 'noopener noreferrer'
-					}
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	link: {
+		decorators: {
+			toggleDownloadable: {
+				mode: 'manual',
+				label: 'Downloadable',
+				attributes: {
+					download: 'file'
+				}
+			},
+			openInNewTab: {
+				mode: 'manual',
+				label: 'Open in a new tab',
+				defaultValue: true,			// This option will be selected by default.
+				attributes: {
+					target: '_blank',
+					rel: 'noopener noreferrer'
 				}
 			}
 		}

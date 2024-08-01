@@ -47,19 +47,18 @@ ClassicEditor
 				'tableProperties', 'tableCellProperties'
 			],
 
-			tableProperties: {
-				// The configuration of the TableProperties plugin.
-				// ...
-			},
+		tableProperties: {
+			// The configuration of the TableProperties plugin.
+			// ...
+		},
 
-			tableCellProperties: {
-				// The configuration of the TableCellProperties plugin.
-				// ...
-			}
+		tableCellProperties: {
+			// The configuration of the TableCellProperties plugin.
+			// ...
 		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	}
+} )
+.then( /* ... */ );
 ```
 
 ## Configuring styling tools
@@ -116,31 +115,29 @@ const customColorPalette = [
 	// ...
 ];
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		plugins: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, /* ... */ ],
-		toolbar: [ 'insertTable', /* ... */ ],
-		table: {
-			contentToolbar: [
-				'tableColumn', 'tableRow', 'mergeTableCells',
-				'tableProperties', 'tableCellProperties'
-			],
+ClassicEditor.create( document.querySelector( '#editor' ), {
+	plugins: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, /* ... */ ],
+	toolbar: [ 'insertTable', /* ... */ ],
+	table: {
+		contentToolbar: [
+			'tableColumn', 'tableRow', 'mergeTableCells',
+			'tableProperties', 'tableCellProperties'
+		],
 
-			// Set the palettes for tables.
-			tableProperties: {
-				borderColors: customColorPalette,
-				backgroundColors: customColorPalette
-			},
+		// Set the palettes for tables.
+		tableProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
+		},
 
-			// Set the palettes for table cells.
-			tableCellProperties: {
-				borderColors: customColorPalette,
-				backgroundColors: customColorPalette
-			}
+		// Set the palettes for table cells.
+		tableCellProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
 		}
-	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	}
+} )
+.then( /* ... */ );
 ```
 
 ### Default table and table cell styles

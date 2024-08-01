@@ -14,12 +14,12 @@ const upath = require( 'upath' );
  * @param {Boolean} isNightly
  * @returns {Object}
  */
-module.exports = function getCKEditor5PackageJson() {
+module.exports = function getCKEditor5PackageJson( isNightly = false ) {
 	const pkgJson = fs.readJsonSync(
 		upath.join( __dirname, '..', '..', '..', 'package.json' )
 	);
 
-	return {
+	const content = {
 		name: pkgJson.name,
 		version: pkgJson.version,
 		keywords: pkgJson.keywords,
