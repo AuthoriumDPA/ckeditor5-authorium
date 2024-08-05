@@ -13,7 +13,6 @@ import type { EditorUIUpdateEvent } from './editorui/editorui.js';
 
 import {
 	DomEmitterMixin,
-	ResizeObserver,
 	first,
 	global,
 	isVisible,
@@ -113,14 +112,6 @@ export default class TooltipManager extends /* #__PURE__ */ DomEmitterMixin() {
 	 * Stores the current tooltip position. `null` when there's no tooltip in the UI.
 	 */
 	private _currentTooltipPosition: TooltipPosition | null = null;
-
-	/**
-	 * An instance of the resize observer that keeps track on target element visibility,
-	 * when it hides the tooltip should also disappear.
-	 *
-	 * {@link module:core/editor/editorconfig~EditorConfig#balloonToolbar configuration}.
-	 */
-	private _resizeObserver: ResizeObserver | null = null;
 
 	/**
 	 * An instance of the mutation observer that keeps track on target element attributes changes.
@@ -415,24 +406,20 @@ export default class TooltipManager extends /* #__PURE__ */ DomEmitterMixin() {
 
 		this.tooltipTextView.text = text;
 
+		this.balloonPanelView.class = [ BALLOON_CLASS, cssClass ]
+			.filter( className => className )
+			.join( ' ' );
+
+		// Ensure that all changes to the tooltip are set before pinning it.
+		// Setting class or text after pinning can cause the tooltip to be pinned in the wrong position.
+		// It happens especially often when tooltip has class modified (like adding `ck-tooltip_multi-line`).
+		// See https://github.com/ckeditor/ckeditor5/issues/16365
 		this.balloonPanelView.pin( {
 			target: targetDomElement,
 			positions: TooltipManager.getPositioningFunctions( position )
 		} );
 
-		this._resizeObserver = new ResizeObserver( targetDomElement, () => {
-			// The ResizeObserver will call its callback when the target element hides and the tooltip
-			// should also disappear (https://github.com/ckeditor/ckeditor5/issues/12492).
-			if ( !isVisible( targetDomElement ) ) {
-				this._unpinTooltip();
-			}
-		} );
-
 		this._mutationObserver!.attach( targetDomElement );
-
-		this.balloonPanelView.class = [ BALLOON_CLASS, cssClass ]
-			.filter( className => className )
-			.join( ' ' );
 
 		// Start responding to changes in editor UI or content layout. For instance, when collaborators change content
 		// and a contextual toolbar attached to a content starts to move (and so should move the tooltip).
@@ -461,10 +448,6 @@ export default class TooltipManager extends /* #__PURE__ */ DomEmitterMixin() {
 		this._currentElementWithTooltip = null;
 		this._currentTooltipPosition = null;
 		this.tooltipTextView.text = '';
-
-		if ( this._resizeObserver ) {
-			this._resizeObserver.destroy();
-		}
 
 		this._mutationObserver!.detach();
 	}

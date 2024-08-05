@@ -1,13 +1,17 @@
 ---
-menu-title: Vue.js 3+
-meta-title: Vue.js 3+ rich text editor component | CKEditor 5 documentation
+menu-title: (Legacy) Vue.js 3+
+meta-title: Vue.js 3+ rich text editor component | Legacy CKEditor 5 documentation
 category: legacy-integrations
 order: 50
 ---
 
 {@snippet installation/integrations/framework-integration}
 
-# Vue.js 3+ rich text editor component
+# Vue.js 3+ rich text editor component &ndash; Legacy guide
+
+<info-box warning>
+	⚠️  We changed installation methods, and this legacy guide is kept for users' convenience. If you are looking for current CKEditor 5 Vue integration, please refer to the newest version of the {@link getting-started/integrations/vuejs-v3 CKEditor&nbsp;5 integration} guide.
+</info-box>
 
 <info-box warning>
 	This is a legacy guide kept for users' convenience. If you are looking for current CKEditor 5 Angular integration, please refer to the newest version of the {@link getting-started/integrations/vuejs-v3 CKEditor 5 integration} guide.
@@ -18,10 +22,6 @@ order: 50
 		<img src="https://badge.fury.io/js/%40ckeditor%2Fckeditor5-vue.svg" alt="npm version" loading="lazy">
 	</a>
 </p>
-
-<info-box>
-	**Important**: This guide is about the CKEditor&nbsp;5 integration with Vue.js 3+. To learn more about the integration with Vue.js 2.x, check out the {@link getting-started/integrations/vuejs-v2 "Rich text editor component for Vue.js 2.x"} guide.
-</info-box>
 
 CKEditor&nbsp;5 consists of the {@link getting-started/legacy-getting-started/predefined-builds ready-to-use editor builds} and the {@link framework/index CKEditor&nbsp;5 Framework} upon which the builds are based.
 
@@ -38,6 +38,10 @@ Additionally, you can [integrate CKEditor&nbsp;5 from source](#using-ckeditor-5-
 </info-box>
 
 ## Quick start
+
+<info-box warning>
+	⚠️  This guide is only valid for version 6.0.0 of the `@ckeditor/ckeditor5-vue` package, because of the API changes introduced in version 7.0.0. If you are looking for current CKEditor&nbsp;5 Vue integration, please refer to the newest version of the {@link getting-started/integrations/vuejs-v3 CKEditor&nbsp;5 integration} guide.
+</info-box>
 
 Install the [CKEditor&nbsp;5 WYSIWYG editor component for Vue.js](https://www.npmjs.com/package/@ckeditor/ckeditor5-vue) and the {@link getting-started/legacy-getting-started/predefined-builds#available-builds editor build of your choice}.
 

@@ -9,7 +9,6 @@
 
 import {
 	Editor,
-	Context,
 	ElementApiMixin,
 	attachToForm,
 	secureSourceElement,
@@ -17,8 +16,6 @@ import {
 	type EditorReadyEvent
 } from 'ckeditor5/src/core.js';
 import { getDataFromElement, CKEditorError } from 'ckeditor5/src/utils.js';
-
-import { ContextWatchdog, EditorWatchdog } from 'ckeditor5/src/watchdog.js';
 
 import InlineEditorUI from './inlineeditorui.js';
 import InlineEditorUIView from './inlineeditoruiview.js';
@@ -59,6 +56,8 @@ export default class InlineEditor extends /* #__PURE__ */ ElementApiMixin( Edito
 
 		super( config );
 
+		this.config.define( 'menuBar.isVisible', false );
+
 		if ( this.config.get( 'initialData' ) === undefined ) {
 			this.config.set( 'initialData', getInitialData( sourceElementOrData ) );
 		}
@@ -72,8 +71,12 @@ export default class InlineEditor extends /* #__PURE__ */ ElementApiMixin( Edito
 
 		const shouldToolbarGroupWhenFull = !this.config.get( 'toolbar.shouldNotGroupWhenFull' );
 
+		const menuBarConfig = this.config.get( 'menuBar' )!;
+
 		const view = new InlineEditorUIView( this.locale, this.editing.view, this.sourceElement, {
-			shouldToolbarGroupWhenFull
+			shouldToolbarGroupWhenFull,
+			useMenuBar: menuBarConfig.isVisible,
+			label: this.config.get( 'label' )
 		} );
 		this.ui = new InlineEditorUI( this, view );
 
@@ -206,27 +209,6 @@ export default class InlineEditor extends /* #__PURE__ */ ElementApiMixin( Edito
 			);
 		} );
 	}
-
-	/**
-	 * The {@link module:core/context~Context} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static Context = Context;
-
-	/**
-	 * The {@link module:watchdog/editorwatchdog~EditorWatchdog} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static EditorWatchdog = EditorWatchdog;
-
-	/**
-	 * The {@link module:watchdog/contextwatchdog~ContextWatchdog} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static ContextWatchdog = ContextWatchdog;
 }
 
 function getInitialData( sourceElementOrData: HTMLElement | string ): string {

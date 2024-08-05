@@ -34,16 +34,24 @@ The plugin enables the following features in the rich-text editor:
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 After {@link getting-started/quick-start installing the editor}, add the feature to your plugin list and toolbar configuration:
 
 ```js
 import { ClassicEditor, Font } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Font, /* ... */ ],
-	toolbar: [ 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', /* ... */ ]
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Font, /* ... */ ],
+		toolbar: [ 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', /* ... */ ]
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 You can also add just one or a selected few of the font features to your plugin list and the toolbar configuration:
@@ -51,11 +59,13 @@ You can also add just one or a selected few of the font features to your plugin 
 ```js
 import { ClassicEditor, FontFamily } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ FontFamily, /* ... */ ],
-	toolbar: [ 'fontFamily', /* ... */ ]
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ FontFamily, /* ... */ ],
+		toolbar: [ 'fontFamily', /* ... */ ]
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuring the font family feature
@@ -89,18 +99,20 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 By default, all `font-family` values that are not specified in the `config.fontFamily.options` are stripped. You can enable support for all font names by using the {@link module:font/fontconfig~FontFamilyConfig#supportAllValues `config.fontFamily.supportAllValues`} option.
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	fontFamily: {
-		options: [
-			// Font family configuration options are described in the "Configuring the font family feature" section.
-			// ...
-		],
-		supportAllValues: true
-	},
-	// More of editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		fontFamily: {
+			options: [
+				// Font family configuration options are described in the "Configuring the font family feature" section.
+				// ...
+			],
+			supportAllValues: true
+		},
+		// More of editor's configuration.
+		// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuring the font size feature
@@ -207,18 +219,20 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 By default, all `font-size` values that are not specified in the `config.fontSize.options` are stripped. You can enable support for all font sizes by using the {@link module:font/fontconfig~FontSizeConfig#supportAllValues `config.fontSize.supportAllValues`} option.
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	fontSize: {
-		options: [
-			// Numerical values.
-			// ...
-		],
-		supportAllValues: true
-	},
-	// More of editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		fontSize: {
+			options: [
+				// Numerical values.
+				// ...
+			],
+			supportAllValues: true
+		},
+		// More of editor's configuration.
+		// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box info>

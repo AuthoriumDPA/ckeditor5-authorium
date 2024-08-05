@@ -1,6 +1,6 @@
 ---
 category: setup
-order: 60
+order: 80
 meta-title: License key and activation | CKEditor 5 Documentation
 menu-title: License key and activation
 ---
@@ -88,7 +88,7 @@ ClassicEditor
 		plugins: [ /* ... */ ],
 
 		// Provide the licence key.
-		licenseKey: 'your-license-key',
+		licenseKey: '<YOUR_LICENSE_KEY>',
 
 		// Display the feature UI element in the toolbar.
 		toolbar: [ /* ... */ ],

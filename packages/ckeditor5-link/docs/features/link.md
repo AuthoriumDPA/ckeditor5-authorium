@@ -32,16 +32,24 @@ CKEditor&nbsp;5 allows for typing both at the inner and outer boundaries of link
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 After {@link getting-started/quick-start installing the editor}, add the feature to your plugin list and toolbar configuration:
 
 ```js
 import { ClassicEditor, AutoLink, Link } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Link, AutoLink, /* ... */ ],
-	toolbar: [ 'link', /* ... */ ],
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Link, AutoLink, /* ... */ ],
+		toolbar: [ 'link', /* ... */ ],
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Custom link attributes (decorators)
@@ -108,14 +116,16 @@ Each decorator definition must have a unique name. For [manual decorators](#addi
 A common use case for (automatic) link decorators is adding the `target="_blank"` and `rel="noopener noreferrer"` attributes to all external links in the document. A dedicated {@link module:link/linkconfig~LinkConfig#addTargetToExternalLinks `config.link.addTargetToExternalLinks`} configuration exists for that purpose. When you set this option to `true`, all links starting with `http://`, `https://`, or `//` are "decorated" with `target` and `rel` attributes.
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	link: {
-		addTargetToExternalLinks: true
-	}
-	// More of the editor's configuration.
-		// ...
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		link: {
+			addTargetToExternalLinks: true
+		}
+		// More of the editor's configuration.
+			// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 Internally, this configuration corresponds to an [automatic decorator](#adding-attributes-to-links-based-on-predefined-rules-automatic-decorators) with the following {@link module:link/linkconfig~LinkDecoratorAutomaticDefinition definition}:
@@ -133,11 +143,11 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 				}
 			}
 		}
-	}
-	// More of the editor's configuration.
-		// ...
-} )
-.then( /* ... */ );
+		// More of the editor's configuration.
+			// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 If you want to leave the decision whether a link should open in a new tab to the users, do not use the `config.link.addTargetToExternalLinks` configuration. Define a new [manual decorator](#adding-attributes-to-links-using-the-ui-manual-decorators) with the following definition instead:
@@ -155,11 +165,11 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 				}
 			}
 		}
-	}
-	// More of the editor's configuration.
-		// ...
-} )
-.then( /* ... */ );
+		// More of the editor's configuration.
+			// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 #### Adding default link protocol to external links
@@ -171,14 +181,16 @@ After you enable the {@link module:link/linkconfig~LinkConfig#defaultProtocol `c
 See a basic configuration example:
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	link: {
-		defaultProtocol: 'http://'
-	}
-	// More of the editor's configuration.
-		// ...
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		link: {
+			defaultProtocol: 'http://'
+		}
+		// More of the editor's configuration.
+			// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box>
@@ -194,15 +206,17 @@ By default, a minimal set of protocols is allowed to be used in the links. Any U
 See a configuration example:
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	link: {
-		// You can use `s?` suffix like below to allow both `http` and `https` protocols at the same time.
-		allowedProtocols: [ 'https?', 'tel', 'sms', 'sftp', 'smb', 'slack' ]
-	}
-	// More of the editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		link: {
+			// You can use `s?` suffix like below to allow both `http` and `https` protocols at the same time.
+			allowedProtocols: [ 'https?', 'tel', 'sms', 'sftp', 'smb', 'slack' ]
+		}
+		// More of the editor's configuration.
+		// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box warning>
@@ -227,11 +241,11 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 				}
 			}
 		}
-	}
-	// More of the editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+		// More of the editor's configuration.
+		// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box>
@@ -265,11 +279,11 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 				}
 			}
 		}
-	}
-	// More of the editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+		// More of the editor's configuration.
+		// ...
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Autolink feature

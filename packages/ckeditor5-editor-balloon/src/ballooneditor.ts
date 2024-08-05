@@ -9,7 +9,6 @@
 
 import {
 	Editor,
-	Context,
 	ElementApiMixin,
 	attachToForm,
 	secureSourceElement,
@@ -19,8 +18,6 @@ import {
 
 import { BalloonToolbar } from 'ckeditor5/src/ui.js';
 import { CKEditorError, getDataFromElement } from 'ckeditor5/src/utils.js';
-
-import { ContextWatchdog, EditorWatchdog } from 'ckeditor5/src/watchdog.js';
 
 import BalloonEditorUI from './ballooneditorui.js';
 import BalloonEditorUIView from './ballooneditoruiview.js';
@@ -80,7 +77,7 @@ export default class BalloonEditor extends /* #__PURE__ */ ElementApiMixin( Edit
 
 		this.model.document.createRoot();
 
-		const view = new BalloonEditorUIView( this.locale, this.editing.view, this.sourceElement );
+		const view = new BalloonEditorUIView( this.locale, this.editing.view, this.sourceElement, this.config.get( 'label' ) );
 		this.ui = new BalloonEditorUI( this, view );
 
 		attachToForm( this );
@@ -219,27 +216,6 @@ export default class BalloonEditor extends /* #__PURE__ */ ElementApiMixin( Edit
 			);
 		} );
 	}
-
-	/**
-	 * The {@link module:core/context~Context} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static Context = Context;
-
-	/**
-	 * The {@link module:watchdog/editorwatchdog~EditorWatchdog} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static EditorWatchdog = EditorWatchdog;
-
-	/**
-	 * The {@link module:watchdog/contextwatchdog~ContextWatchdog} class.
-	 *
-	 * Exposed as static editor field for easier access in editor builds.
-	 */
-	public static ContextWatchdog = ContextWatchdog;
 }
 
 function getInitialData( sourceElementOrData: HTMLElement | string ): string {

@@ -27,19 +27,27 @@ You can read more about possible implementations of the mention feature in a [de
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 After {@link getting-started/quick-start installing the editor}, add the feature to your plugin list and toolbar configuration:
 
 ```js
 import { ClassicEditor, Mention } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Mention, /* ... */ ],
-	mention: {
-		// Configuration.
-		// ...
-	}
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Mention, /* ... */ ],
+		mention: {
+			// Configuration.
+			// ...
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuration
@@ -218,27 +226,29 @@ A full, working demo with all possible customizations and its source code is ava
 You can control the text inserted into the editor when creating a mention via the {@link module:mention/mentionconfig~MentionFeedObjectItem `text`} property in the mention configuration.
 
 ```js
-ClassicEditor.create( editorElement, {
-	plugins: [ Mention, ... ],
-	mention: {
-		feeds: [
-			// Feed items as objects.
-			{
-				marker: '@',
-				feed: [
-					{
-						id: '@Barney',
-						fullName: 'Barney Stinson',
-						// Custom text to be inserted into the editor
-						text: 'Swarley'
-					},
-					// ...
-				]
-			},
-		]
-	}
-} )
-	.then( ... );
+ClassicEditor
+	.create( editorElement, {
+		plugins: [ Mention, ... ],
+		mention: {
+			feeds: [
+				// Feed items as objects.
+				{
+					marker: '@',
+					feed: [
+						{
+							id: '@Barney',
+							fullName: 'Barney Stinson',
+							// Custom text to be inserted into the editor
+							text: 'Swarley'
+						},
+						// ...
+					]
+				},
+			]
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 The string that you specify in this property will be displayed in the editor when a mention is created.

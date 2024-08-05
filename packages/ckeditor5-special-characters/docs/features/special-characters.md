@@ -22,6 +22,12 @@ Use the special characters toolbar button {@icon @ckeditor/ckeditor5-special-cha
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 After {@link getting-started/quick-start installing the editor}, add the feature to your plugin list and toolbar configuration:
 
 ```js
@@ -29,11 +35,13 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 // The other provide a basic set of special characters.
 import { ClassicEditor, SpecialCharacters, SpecialCharactersEssentials } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ SpecialCharacters, SpecialCharactersEssentials, /* ... */ ],
-	toolbar: [ 'specialCharacters', /* ... */ ],
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ SpecialCharacters, SpecialCharactersEssentials, /* ... */ ],
+		toolbar: [ 'specialCharacters', /* ... */ ],
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuration
@@ -160,19 +168,21 @@ The order of categories in the UI is determined by the order in which they were 
 The categories order can be customized using the {@link module:special-characters/specialcharactersconfig~SpecialCharactersConfig#order `order`} array.
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ SpecialCharacters, SpecialCharactersEssentials, ... ],
-	specialCharacters: {
-		order: [
-			'Text',
-			'Latin',
-			'Mathematical',
-			'Currency',
-			'Arrows'
-		]
-	}
-} )
-	.then( ... );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ SpecialCharacters, SpecialCharactersEssentials, ... ],
+		specialCharacters: {
+			order: [
+				'Text',
+				'Latin',
+				'Mathematical',
+				'Currency',
+				'Arrows'
+			]
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Common API

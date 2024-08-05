@@ -31,12 +31,23 @@ How to understand this demo:
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 After {@link getting-started/quick-start installing the editor}, add the feature to your plugin list.
 
 Assuming that you have implemented some form of the `saveData()` function that sends the data to your server and returns a promise which is resolved once the data is successfully saved, configuring the {@link module:autosave/autosave~Autosave} feature is simple:
 
 ```js
 import { ClassicEditor, Autosave } from 'ckeditor5';
+
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [
+			Autosave,
 
 ClassicEditor.create( document.querySelector( '#editor' ), {
 	plugins: [
@@ -45,14 +56,10 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 		// ... other plugins.
 	],
 
-	autosave: {
-		save( editor ) {
-			return saveData( editor.getData() );
-		}
-	},
-
-	// ... other configuration options.
-} );
+		// ... other configuration options.
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 The autosave feature listens to the {@link module:engine/model/document~Document#event:change:data `editor.model.document#change:data`} event, throttles it, and executes the {@link module:autosave/autosave~AutosaveConfig#save `config.autosave.save()`} function.
@@ -79,7 +86,9 @@ ClassicEditor
 		},
 
 		// ... other configuration options.
-	} );
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ### Demo code

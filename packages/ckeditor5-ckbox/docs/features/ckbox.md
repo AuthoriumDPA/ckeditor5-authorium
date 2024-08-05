@@ -55,13 +55,21 @@ You can also upload images by dragging them into your content. After you drag an
 
 ## Installation
 
+<info-box info>
+	⚠️ **New import paths**
+
+	Starting with {@link updating/update-to-42 version 42.0.0}, we changed the format of import paths. This guide uses the new, shorter format. Refer to the {@link getting-started/legacy-getting-started/legacy-imports Packages in the legacy setup} guide if you use an older version of CKEditor&nbsp;5.
+</info-box>
+
 To use this feature in your application, you must first load the CKBox library and then enable CKBox integration in your rich-text editor instance.
 
 The easiest way to load the CKBox library is to include the `<script>` tag loading the `ckbox.js` file first:
 
 ```html
-<script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
+<script src="https://cdn.ckbox.io/ckbox/2.4.0/ckbox.js"></script>
 ```
+
+Please note, that while using the `latest` call instead of a version number is available, it is not advised. The latest version may bring breaking changes that will stall your CKBox integration.
 
 The CKBox feature requires one of the following plugins to be loaded to work correctly:
 
@@ -80,15 +88,17 @@ Finally, add {@link module:ckbox/ckbox~CKBox} to your plugin list and toolbar, a
 ```js
 import { ClassicEditor, Image, ImageUpload, PictureEditing, CKBox, CKBoxImageEdit, CloudServices } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Image, PictureEditing, ImageUpload, CloudServices, CKBox, CKBoxImageEdit, /* ... */ ],
-	toolbar: [ 'ckbox', 'ckboxImageEdit', /* ... */ ], // Depending on your preference.
-	ckbox: {
-		// Feature configuration including license key.
-		// ...
-	}
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Image, PictureEditing, ImageUpload, CloudServices, CKBox, CKBoxImageEdit, /* ... */ ],
+		toolbar: [ 'ckbox', 'ckboxImageEdit', /* ... */ ], // Depending on your preference.
+		ckbox: {
+			// Feature configuration including license key.
+			// ...
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 Further in the document, the dependency plugins will be omitted in code listings for clarity.
@@ -102,11 +112,14 @@ To invoke the CKBox image editor straight from the image contextual toolbar (ava
 The snippet below shows an example image contextual toolbar configuration.
 
 ```js
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	image: {
-		toolbar: [ 'toggleImageCaption', 'imageTextAlternative', 'ckboxImageEdit' ]
-	}
-} )
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		image: {
+			toolbar: [ 'toggleImageCaption', 'imageTextAlternative', 'ckboxImageEdit' ]
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuration
@@ -216,8 +229,8 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 Also, make sure to include the translation file after loading the CKBox library:
 
 ```html
-<script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
-<script src="https://cdn.ckbox.io/CKBox/1.2.1/translations/es.js"></script>
+<script src="https://cdn.ckbox.io/ckbox/2.4.0/ckbox.js"></script>
+<script src="https://cdn.ckbox.io/ckbox/2.4.0/translations/es.js"></script>
 ```
 
 ### Providing the token URL

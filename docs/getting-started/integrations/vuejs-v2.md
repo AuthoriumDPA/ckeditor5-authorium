@@ -30,6 +30,7 @@ Vue.js is a versatile framework for building web user interfaces. CKEditor&nbsp;
 ### Using CKEditor&nbsp;5 Builder
 
 The easiest way to use CKEditor 5 in your Vue application is by configuring it with [CKEditor&nbsp;5 Builder](https://ckeditor.com/builder?redirect=docs) and integrating it with your application. Builder offers an easy-to-use user interface to help you configure, preview, and download the editor suited to your needs. You can easily select:
+
 * the features you need,
 * the preferred framework (React, Angular, Vue or Vanilla JS),
 * the preferred distribution method.
@@ -80,8 +81,8 @@ Use the `<ckeditor>` component inside the template tag. The below example shows 
 import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
 import { SlashCommand } from 'ckeditor5-premium-features';
 
-import 'ckeditor5/index.css';
-import 'ckeditor5-premium-features/index.css';
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 
 export default {
 	name: 'app',
@@ -91,11 +92,11 @@ export default {
 			editorData: '<p>Hello from CKEditor 5 in Vue 2!</p>',
 			editorConfig: {
 				toolbar: {
-                    items: [ 'undo', 'redo', '|', 'bold', 'italic' ],
-                },
+					items: [ 'undo', 'redo', '|', 'bold', 'italic' ],
+				 },
 				plugins: [
-                    Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
-                ],
+					Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
+				],
 				licenseKey: '<YOUR_LICENSE_KEY>',
 				mention: { 
 					// Mention configuration
@@ -103,7 +104,7 @@ export default {
 			}
 		};
 	}
-}
+};
 </script>
 ```
 
@@ -122,7 +123,7 @@ If you do not want the CKEditor component to be enabled globally, you can skip t
 import CKEditor from '@ckeditor/ckeditor5-vue2';
 import { Bold, ClassicEditor, Essentials, Italic, Paragraph } from 'ckeditor5';
 
-import 'ckeditor5/index.css';
+import 'ckeditor5/ckeditor5.css';
 
 export default {
 	name: 'app',
@@ -141,7 +142,7 @@ export default {
 			}
 		};
 	}
-}
+};
 </script>
 ```
 
@@ -170,7 +171,7 @@ This directive specifies the editor to be used by the component. It must directl
 				// ...
 			};
 		}
-	}
+	};
 </script>
 ```
 
@@ -217,7 +218,7 @@ A [standard directive](https://vuejs.org/v2/api/#v-model) for form inputs in Vue
 				this.editorData = '';
 			}
 		}
-	}
+	};
 </script>
 ```
 
@@ -247,7 +248,7 @@ Allows a one–way data binding that sets the content of the editor. Unlike [`v-
 				editorData: '<p>Content of the editor.</p>'
 			};
 		}
-	}
+	};
 </script>
 ```
 
@@ -277,7 +278,7 @@ Specifies the {@link module:core/editor/editorconfig~EditorConfig configuration}
 				}
 			};
 		}
-	}
+	};
 </script>
 ```
 
@@ -306,7 +307,7 @@ It sets the initial read–only state of the editor and changes it during its li
 				editorDisabled: true
 			};
 		}
-	}
+	};
 </script>
 ```
 
@@ -372,7 +373,7 @@ Since accessing the editor toolbar is not possible until after the editor instan
 <script>
 	import { DecoupledEditor, Bold, Essentials, Italic, Paragraph, Undo } from 'ckeditor5';
 
-	import 'ckeditor5/index.css'
+	import 'ckeditor5/ckeditor5.css'
 
 	export default {
 		name: 'app',
@@ -391,7 +392,7 @@ Since accessing the editor toolbar is not possible until after the editor instan
 				);
 			}
 		}
-	}
+	};
 </script>
 ```
 
@@ -421,7 +422,7 @@ import { ClassicEditor, Bold, Essentials, Italic, Paragraph } from 'ckeditor5';
 // More imports...
 
 import coreTranslations from 'ckeditor5/translations/es.js';
-import commercialTranslations from 'ckeditor5-premium-features/translations/es.js';
+import premiumFeaturesTranslations from 'ckeditor5-premium-features/translations/es.js';
 
 // Style sheets imports...
 
@@ -436,11 +437,11 @@ export default {
                     items: [ 'undo', 'redo', '|', 'bold', 'italic' ],
                 },
                 plugins: [ Bold, Essentials, Italic, Paragraph ],
-				translations: [ coreTranslations, commercialTranslations ]
+				translations: [ coreTranslations, premiumFeaturesTranslations ]
 			}
 		};
 	}
-}
+};
 </script>
 ```
 
