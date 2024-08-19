@@ -13,10 +13,11 @@ import type { TableConfig } from '@ckeditor/ckeditor5-table';
 export function MentionCustomization( editor: Editor ) {
 	editor.conversion.for( 'upcast' ).elementToAttribute( {
 		view: {
-			name: 'span',
+			name: 'a',
 			key: 'data-mention',
 			classes: 'mention',
 			attributes: {
+				href: true,
 				'data-model': true,
 				'data-id': true,
 				'data-label-method': true,
@@ -26,13 +27,14 @@ export function MentionCustomization( editor: Editor ) {
 		model: {
 			key: 'mention',
 			value: ( viewItem: Element ) => {
-				const mentionAttribute = editor.plugins.get( 'Mention' ).toMentionAttribute( viewItem, {
+				const mentionAttribute = ( editor.plugins.get( 'Mention' ) as any ).toMentionAttribute( viewItem, {
 					modelName: viewItem.getAttribute( 'data-model' ),
 					modelId: viewItem.getAttribute( 'data-id' ),
 					labelMethod: viewItem.getAttribute( 'data-label-method' ),
 					label: viewItem.getAttribute( 'data-label' ),
 					dataToggle: viewItem.getAttribute( 'data-toggle' ),
-					dataTitle: viewItem.getAttribute( 'data-original-title' )
+					dataTitle: viewItem.getAttribute( 'data-original-title' ),
+					href: viewItem.getAttribute( 'href' )
 				} );
 				return mentionAttribute;
 			}
@@ -48,8 +50,8 @@ export function MentionCustomization( editor: Editor ) {
 			setTimeout( function() {
 			}, 500 );
 
-			return writer.createAttributeElement( 'span', {
-				'class': 'mention',
+			return writer.createAttributeElement( 'a', {
+				'class': 'mention underline',
 				'data-model': modelAttributeValue.modelName,
 				'data-id': modelAttributeValue.modelId || crypto.randomUUID(),
 				'data-label': modelAttributeValue.label,
@@ -57,7 +59,8 @@ export function MentionCustomization( editor: Editor ) {
 				'data-toggle': modelAttributeValue.dataToggle,
 				'data-original-title': modelAttributeValue.dataTitle,
 				'data-mentionings--render-target': 'mentioning',
-				'data-container': '.element-box'
+				'data-container': '.element-box',
+				'href': modelAttributeValue.href
 			}, {
 				priority: 20,
 				id: modelAttributeValue.uid
