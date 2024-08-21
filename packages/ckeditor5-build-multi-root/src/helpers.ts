@@ -34,7 +34,7 @@ export function MentionCustomization( editor: Editor ) {
 					label: viewItem.getAttribute( 'data-label' ),
 					dataToggle: viewItem.getAttribute( 'data-toggle' ),
 					dataTitle: viewItem.getAttribute( 'data-original-title' ),
-					href: viewItem.getAttribute( 'href' )
+					link: viewItem.getAttribute( 'href' )
 				} );
 				return mentionAttribute;
 			}
@@ -60,7 +60,7 @@ export function MentionCustomization( editor: Editor ) {
 				'data-original-title': modelAttributeValue.dataTitle,
 				'data-mentionings--render-target': 'mentioning',
 				'data-container': '.element-box',
-				'href': modelAttributeValue.href
+				'href': modelAttributeValue.link
 			}, {
 				priority: 20,
 				id: modelAttributeValue.uid
