@@ -3,6 +3,10 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
+/**
+ * This file is the Authorium Entry point for the CKEditor integration
+ */
+
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
@@ -57,11 +61,12 @@ import {
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { TrackChanges, TrackChangesData } from '@ckeditor/ckeditor5-track-changes';
 import { Undo } from '@ckeditor/ckeditor5-undo';
-import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
+import { AIAssistant, OpenAITextAdapter } from '@ckeditor/ckeditor5-ai';
 
-import type {
-	LanguageConfig } from './helpers.js';
+// import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
+
 import {
+	type LanguageConfig,
 	CodeBlockConfiguration,
 	HeadingConfiguration,
 	ImageConfiguration,
@@ -135,10 +140,15 @@ class Editor extends MultiRootEditorBase {
 		Underline,
 		CKFinderUploadAdapter,
 		Undo,
-		WideSidebar
+		WideSidebar,
+		AIAssistant,
+		OpenAITextAdapter
 	];
 
 	private static toolbarItems = [
+		'aiCommands',
+		'aiAssistant',
+		'|',
 		'undo',
 		'redo',
 		'|',
@@ -180,7 +190,6 @@ class Editor extends MultiRootEditorBase {
 		'trackChanges',
 		'|',
 		'commentsArchive'
-
 	];
 
 	public static override defaultConfig: MultirootEditorConfig = {
