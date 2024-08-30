@@ -79,6 +79,32 @@ interface MultirootEditorConfig extends EditorConfig {
 	codeBlock: { languages: Array<LanguageConfig> };
 }
 
+class CustomOpenAITextAdapter extends OpenAITextAdapter {
+	public override async prepareMessages( query: any, context: any, actionId: string ): Promise<any> {
+		const messages = await super.prepareMessages( query, context, actionId );
+		console.log( 'preparing messages for ai' );
+		console.log( { query, context, actionId, messages } );
+		// You can use `this.editor` to get access to the editor API
+		return messages;
+	}
+
+	public override async sendRequest( requestData: any ): Promise<any> {
+		const originalOnData = requestData.onData;
+		const { actionId } = requestData;
+		console.log( `sending ai request for ${ actionId }` );
+
+		requestData.onData = ( content: any ) => {
+			console.log( 'got data from ai' );
+			console.log( content );
+			originalOnData( content );
+		};
+
+		return super.sendRequest( requestData ).then( response => {
+			console.log( 'request finished' );
+		} );
+	}
+}
+
 class Editor extends MultiRootEditorBase {
 	public static override builtinPlugins = [
 		Alignment,
@@ -142,7 +168,7 @@ class Editor extends MultiRootEditorBase {
 		Undo,
 		WideSidebar,
 		AIAssistant,
-		OpenAITextAdapter
+		CustomOpenAITextAdapter
 	];
 
 	private static toolbarItems = [
