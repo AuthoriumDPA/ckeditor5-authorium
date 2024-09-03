@@ -1,7 +1,5 @@
 ## CKEditor for Authorium
 
-Make sure you have upgraded to Yarn 4, as described [here](https://yarnpkg.com/migration/guide#migration-steps).
-
 ### Local Development
 1. Install deps 
    ```bash
@@ -13,13 +11,13 @@ Make sure you have upgraded to Yarn 4, as described [here](https://yarnpkg.com/m
    cd packages/ckeditor5-build-multi-root
    ```
 
-3. Generates the build folder containing the customized editor
+3. Generate the build folder containing the customized editor
 
    ```bash
 	yarn build
    ```
    
-4. Create symlinks to local project, only the first time
+4. Create symlinks to local project (only the first time)
 
    ```bash
 	npm link
@@ -29,10 +27,10 @@ Make sure you have upgraded to Yarn 4, as described [here](https://yarnpkg.com/m
 1. Update the repository
 
    ```bash
-	yarn install --force
+	yarn install
    ```
 
-2. Link CKEditor custom editor to Authorium, only the first time
+2. Link CKEditor custom editor to Authorium. You'll need to do this anytime after running `yarn install`
 
    ```bash
 	npm link "@eagerworks/ckeditor5-build-multi-root"
