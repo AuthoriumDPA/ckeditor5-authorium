@@ -3,6 +3,10 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
+/**
+ * This file is the Authorium Entry point for the CKEditor integration
+ */
+
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
@@ -57,11 +61,12 @@ import {
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { TrackChanges, TrackChangesData } from '@ckeditor/ckeditor5-track-changes';
 import { Undo } from '@ckeditor/ckeditor5-undo';
-import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
+import { AIAssistant, OpenAITextAdapter } from '@ckeditor/ckeditor5-ai';
 
-import type {
-	LanguageConfig } from './helpers.js';
+// import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
+
 import {
+	type LanguageConfig,
 	CodeBlockConfiguration,
 	HeadingConfiguration,
 	ImageConfiguration,
@@ -72,6 +77,32 @@ import {
 
 interface MultirootEditorConfig extends EditorConfig {
 	codeBlock: { languages: Array<LanguageConfig> };
+}
+
+class CustomOpenAITextAdapter extends OpenAITextAdapter {
+	public override async prepareMessages( query: any, context: any, actionId: string ): Promise<any> {
+		const messages = await super.prepareMessages( query, context, actionId );
+		// console.log( 'preparing messages for ai' );
+		// console.log( { query, context, actionId, messages } );
+		// You can use `this.editor` to get access to the editor API
+		return messages;
+	}
+
+	public override async sendRequest( requestData: any ): Promise<any> {
+		const originalOnData = requestData.onData;
+		const { actionId } = requestData;
+		// console.log( `sending ai request for ${ actionId }` );
+
+		requestData.onData = ( content: any ) => {
+			// console.log( 'got data from ai' );
+			// console.log( content );
+			originalOnData( content );
+		};
+
+		return super.sendRequest( requestData ).then( response => {
+			// console.log( 'request finished' );
+		} );
+	}
 }
 
 class Editor extends MultiRootEditorBase {
@@ -135,10 +166,15 @@ class Editor extends MultiRootEditorBase {
 		Underline,
 		CKFinderUploadAdapter,
 		Undo,
-		WideSidebar
+		WideSidebar,
+		AIAssistant,
+		CustomOpenAITextAdapter
 	];
 
 	private static toolbarItems = [
+		'aiCommands',
+		'aiAssistant',
+		'|',
 		'undo',
 		'redo',
 		'|',
@@ -180,7 +216,6 @@ class Editor extends MultiRootEditorBase {
 		'trackChanges',
 		'|',
 		'commentsArchive'
-
 	];
 
 	public static override defaultConfig: MultirootEditorConfig = {

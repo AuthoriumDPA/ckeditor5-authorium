@@ -1,6 +1,6 @@
 {
-  "name": "@eagerworks/ckeditor5-build-multi-root",
-  "version": "42.0.2-links",
+  "name": "@authorium/ckeditor5-build-multi-root",
+  "version": "42.0.2-genai",
   "description": "The multi-root editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
     "ckeditor5-build",
@@ -70,6 +70,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "dev": "webpack --mode production --watch",
     "postbuild": "tsc -p ./tsconfig.types.json"
   }
 }
