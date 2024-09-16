@@ -6,14 +6,17 @@
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
+import { Autosave } from '@ckeditor/ckeditor5-autosave';
 import { AnnotationsUIs, Comments, WideSidebar } from '@ckeditor/ckeditor5-comments';
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { Bold, Italic, Strikethrough, Underline, Subscript, Superscript } from '@ckeditor/ckeditor5-basic-styles';
 import { CKFinderUploadAdapter } from '@ckeditor/ckeditor5-adapter-ckfinder';
+import { List, ListProperties, TodoList } from '@ckeditor/ckeditor5-list';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { EasyImage } from '@ckeditor/ckeditor5-easy-image';
 import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
@@ -31,7 +34,6 @@ import {
 } from '@ckeditor/ckeditor5-image';
 import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
 import { Link } from '@ckeditor/ckeditor5-link';
-import { List, ListProperties, TodoList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { Mention } from '@ckeditor/ckeditor5-mention';
 import { PageBreak } from '@ckeditor/ckeditor5-page-break';
@@ -53,7 +55,7 @@ import {
 	TableToolbar
 } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { TrackChanges } from '@ckeditor/ckeditor5-track-changes';
+import { TrackChanges, TrackChangesData } from '@ckeditor/ckeditor5-track-changes';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader';
 
@@ -78,10 +80,12 @@ class Editor extends MultiRootEditorBase {
 		AnnotationsUIs,
 		Autoformat,
 		BlockQuote,
+		Autosave,
 		Bold,
 		CloudServices,
 		Comments,
 		Essentials,
+		EasyImage,
 		FindAndReplace,
 		FontBackgroundColor,
 		FontColor,
@@ -127,11 +131,11 @@ class Editor extends MultiRootEditorBase {
 		TextTransformation,
 		TodoList,
 		TrackChanges,
+		TrackChangesData,
 		Underline,
 		CKFinderUploadAdapter,
 		Undo,
-		WideSidebar,
-		WProofreader
+		WideSidebar
 	];
 
 	private static toolbarItems = [
@@ -148,7 +152,7 @@ class Editor extends MultiRootEditorBase {
 				'bold',
 				'strikethrough',
 				'subscript',
-				'superscript',
+				'superscript'
 			]
 		},
 		'fontColor',
@@ -167,15 +171,16 @@ class Editor extends MultiRootEditorBase {
 		'imageUpload',
 		'insertTable',
 		'|',
-		'comment',
-		'commentsArchive',
-		'trackChanges',
-		'|',
 		'findAndReplace',
 		'removeFormat',
-		'wproofreader',
 		'blockQuote',
 		'horizontalLine',
+		'|',
+		'comment',
+		'trackChanges',
+		'|',
+		'commentsArchive'
+
 	];
 
 	public static override defaultConfig: MultirootEditorConfig = {
@@ -204,8 +209,8 @@ class Editor extends MultiRootEditorBase {
 				extraPlugins: [
 					Autoformat,
 					Bold,
-					Italic,
-					List
+					List,
+					Italic
 				]
 			}
 		},
