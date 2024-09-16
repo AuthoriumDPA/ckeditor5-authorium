@@ -89,11 +89,13 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { List } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ List, /* ... */ ],
-	toolbar: [ 'bulletedList', 'numberedList', /* ... */ ]
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ List, /* ... */ ],
+		toolbar: [ 'bulletedList', 'numberedList', /* ... */ ]
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ### List properties
@@ -105,18 +107,20 @@ To enable selected sub-features of the list properties, add their configuration 
 ```js
 import { ListProperties } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ ListProperties, /* ... */ ],
-	toolbar: [ 'bulletedList', 'numberedList', /* ... */ ],
-	list: {
-		properties: {
-			styles: true,
-			startIndex: true,
-			reversed: true
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ ListProperties, /* ... */ ],
+		toolbar: [ 'bulletedList', 'numberedList', /* ... */ ],
+		list: {
+			properties: {
+				styles: true,
+				startIndex: true,
+				reversed: true
+			}
 		}
-	}
-} )
-.then( /* ... */ );
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box warning>

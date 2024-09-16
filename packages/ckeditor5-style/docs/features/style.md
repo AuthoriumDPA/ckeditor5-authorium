@@ -236,23 +236,25 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, Style } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Style, /* ... */ ],
-	toolbar: {
-		items: [
-			'style',
-			// More toolbar items.
-			// ...
-		],
-	},
-	style: {
-		definitions: [
-			// Styles definitions.
-			// ...
-		]
-	}
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Style, /* ... */ ],
+		toolbar: {
+			items: [
+				'style',
+				// More toolbar items.
+				// ...
+			],
+		},
+		style: {
+			definitions: [
+				// Styles definitions.
+				// ...
+			]
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Configuration

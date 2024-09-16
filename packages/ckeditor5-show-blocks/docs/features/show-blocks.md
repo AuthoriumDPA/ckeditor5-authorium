@@ -31,14 +31,16 @@ After {@link getting-started/quick-start installing the editor}, add the feature
 ```js
 import { ClassicEditor, ShowBlocks } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	// Load the plugin.
-	plugins: [ ShowBlocks, /* ... */ ],
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		// Load the plugin.
+		plugins: [ ShowBlocks, /* ... */ ],
 
-	// Display the "Show blocks" button in the toolbar.
-	toolbar: [ 'showBlocks', /* ... */ ],
-} )
-.then( /* ... */ );
+		// Display the "Show blocks" button in the toolbar.
+		toolbar: [ 'showBlocks', /* ... */ ],
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 <info-box info>

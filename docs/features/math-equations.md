@@ -73,11 +73,13 @@ Then add it to your plugin list and the toolbar configuration. Please note, that
 import { ClassicEditor } from 'ckeditor5';
 import MathType from '@wiris/mathtype-ckeditor5/dist/index.js';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ MathType, /* ... */ ],
-	toolbar: [ 'MathType', 'ChemType', /* ... */ ]
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ MathType, /* ... */ ],
+		toolbar: [ 'MathType', 'ChemType', /* ... */ ]
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 ## Customizing MathType service
