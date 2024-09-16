@@ -22,6 +22,7 @@ import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import { Highlight } from '@ckeditor/ckeditor5-highlight';
 import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
+import { MergeFields } from '@ckeditor/ckeditor5-merge-fields';
 import {
 	Image,
 	ImageCaption,
@@ -108,6 +109,7 @@ class Editor extends MultiRootEditorBase {
 		List,
 		ListProperties,
 		MediaEmbed,
+		MergeFields,
 		Mention,
 		MentionCustomization,
 		PageBreak,
