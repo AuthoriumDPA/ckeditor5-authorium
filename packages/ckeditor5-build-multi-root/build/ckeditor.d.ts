@@ -2,6 +2,9 @@
  * @license Copyright (c) 2003-2024, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
+/**
+ * This file is the Authorium Entry point for the CKEditor integration
+ */
 import { MultiRootEditor as MultiRootEditorBase } from '@ckeditor/ckeditor5-editor-multi-root';
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
 import { Autosave } from '@ckeditor/ckeditor5-autosave';
@@ -35,15 +38,19 @@ import { Table, TableCaption, TableCellProperties, TableColumnResize, TablePrope
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { TrackChanges, TrackChangesData } from '@ckeditor/ckeditor5-track-changes';
 import { Undo } from '@ckeditor/ckeditor5-undo';
-import type { LanguageConfig } from './helpers.js';
-import { MentionCustomization } from './helpers.js';
+import { AIAssistant, OpenAITextAdapter } from '@ckeditor/ckeditor5-ai';
+import { type LanguageConfig, MentionCustomization } from './helpers.js';
 interface MultirootEditorConfig extends EditorConfig {
     codeBlock: {
         languages: Array<LanguageConfig>;
     };
 }
+declare class CustomOpenAITextAdapter extends OpenAITextAdapter {
+    prepareMessages(query: any, context: any, actionId: string): Promise<any>;
+    sendRequest(requestData: any): Promise<any>;
+}
 declare class Editor extends MultiRootEditorBase {
-    static builtinPlugins: (typeof Alignment | typeof Autosave | typeof TextTransformation | typeof AnnotationsUIs | typeof Paragraph | typeof Heading | typeof Autoformat | typeof BlockQuote | typeof Superscript | typeof Subscript | typeof Bold | typeof Italic | typeof Strikethrough | typeof Underline | typeof CKFinderUploadAdapter | typeof List | typeof ListProperties | typeof TodoList | typeof CloudServices | typeof Undo | typeof Essentials | typeof EasyImage | typeof FindAndReplace | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof Highlight | typeof HorizontalLine | typeof MergeFields | typeof Image | typeof ImageCaption | typeof ImageResize | typeof ImageStyle | typeof ImageTextAlternative | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof IndentBlock | typeof Link | typeof MediaEmbed | typeof Mention | typeof PageBreak | typeof PasteFromOffice | typeof RemoveFormat | typeof Table | typeof TableCaption | typeof TableCellProperties | typeof TableColumnResize | typeof TableProperties | typeof TableToolbar | typeof PictureEditing | typeof Comments | typeof MentionCustomization | typeof PresenceList | typeof RealTimeCollaborativeComments | typeof RealTimeCollaborativeEditing | typeof RealTimeCollaborativeTrackChanges | typeof TrackChanges | typeof TrackChangesData | typeof WideSidebar)[];
+    static builtinPlugins: (typeof Alignment | typeof Autosave | typeof TextTransformation | typeof AnnotationsUIs | typeof Paragraph | typeof Heading | typeof Autoformat | typeof BlockQuote | typeof Superscript | typeof Subscript | typeof Bold | typeof Italic | typeof Strikethrough | typeof Underline | typeof CKFinderUploadAdapter | typeof List | typeof ListProperties | typeof TodoList | typeof CloudServices | typeof Undo | typeof Essentials | typeof EasyImage | typeof FindAndReplace | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof Highlight | typeof HorizontalLine | typeof MergeFields | typeof Image | typeof ImageCaption | typeof ImageResize | typeof ImageStyle | typeof ImageTextAlternative | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof IndentBlock | typeof Link | typeof MediaEmbed | typeof Mention | typeof PageBreak | typeof PasteFromOffice | typeof RemoveFormat | typeof Table | typeof TableCaption | typeof TableCellProperties | typeof TableColumnResize | typeof TableProperties | typeof TableToolbar | typeof AIAssistant | typeof PictureEditing | typeof CustomOpenAITextAdapter | typeof Comments | typeof MentionCustomization | typeof PresenceList | typeof RealTimeCollaborativeComments | typeof RealTimeCollaborativeEditing | typeof RealTimeCollaborativeTrackChanges | typeof TrackChanges | typeof TrackChangesData | typeof WideSidebar)[];
     private static toolbarItems;
     static defaultConfig: MultirootEditorConfig;
 }
