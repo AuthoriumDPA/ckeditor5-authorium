@@ -52,11 +52,9 @@ ClassicEditor
 		],
 		// More of editor's configuration.
 		// ...
-	],
-	// More of editor's configuration.
-	// ...
-} )
-.then( /* ... */ );
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 
 ```
 

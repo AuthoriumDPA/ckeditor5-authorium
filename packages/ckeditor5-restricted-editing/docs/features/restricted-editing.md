@@ -89,14 +89,16 @@ You can configure which features should be available in the restricted mode. For
 ```js
 import { ClassicEditor, RestrictedEditingMode, Bold } from 'ckeditor5';
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
-	plugins: [ Bold, RestrictedEditingMode, /* ... */ ],
-	toolbar: [ 'bold', '|', 'restrictedEditing', /* ... */ ],
-	restrictedEditing: {
-		allowedCommands: [ 'bold' ]
-	}
-} )
-.then( /* ... */ );
+ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ Bold, RestrictedEditingMode, /* ... */ ],
+		toolbar: [ 'bold', '|', 'restrictedEditing', /* ... */ ],
+		restrictedEditing: {
+			allowedCommands: [ 'bold' ]
+		}
+	} )
+	.then( /* ... */ )
+	.catch( /* ... */ );
 ```
 
 **Note**: Typing and deleting text is always possible in restricted editing regions. For more information, check out the {@link module:restricted-editing/restrictededitingconfig~RestrictedEditingConfig `config.restrictedEditing`} documentation.
